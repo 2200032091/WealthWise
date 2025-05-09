@@ -1,0 +1,44 @@
+# POST  http://localhost:5000/api/transactions
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGI1ZTVjNzFlNjVlNTQ0NjM5ZjlhZSIsImlhdCI6MTc0NTU3OTk4OCwiZXhwIjoxNzQ1NjY2Mzg4fQ.RIwN9OpY0iw4dsJLOxMF01f-5h-dz8dv7eAoPhZ219U
+# Content-Type: application/json
+
+# {
+#    "title": "Groceries",
+#   "amount": 50,
+#   "type": "expense",
+#   "category": "Food",
+#   "note": "Bought some fruits",
+#   "date": "2025-04-25"
+# }
+
+# POST http://localhost:5002/api/watchlist/add
+# Content-Type: application/json
+
+# {
+#   "userId": "user123",
+#   "coinId": "bitcoin",
+#   "coinName": "Bitcoin",
+#   "coinSymbol": "BTC",
+#   "coinImage": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+# }
+
+# DELETE http://localhost:5002/api/watchlist/remove
+# Content-Type: application/json
+
+# {
+#   "userId": "user123",
+#   "coinId": "bitcoin"
+# }
+
+GET http://localhost:5002/api/watchlist/user123
+
+# POST http://localhost:5002/api/watchlist/add
+# Content-Type: application/json
+
+# {
+#   "userId": "user123",
+#   "coinId": "bitcoin",
+#   "coinName": "Bitcoin",
+#   "coinSymbol": "BTC",
+#   "coinImage": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+# }
