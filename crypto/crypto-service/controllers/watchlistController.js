@@ -1,10 +1,10 @@
-// controllers/watchlistController.js
 const Watchlist = require('../models/Watchlist');
 
 // Add a coin to watchlist
 const addToWatchlist = async (req, res) => {
   try {
-    const { userId, coinId, coinName, coinSymbol, coinImage } = req.body;
+    const { coinId, coinName, coinSymbol, coinImage } = req.body;
+    const userId = req.userId; // set by auth middleware
 
     const newEntry = new Watchlist({
       userId,
@@ -18,14 +18,15 @@ const addToWatchlist = async (req, res) => {
     res.status(201).json({ message: 'Coin added to watchlist' });
   } catch (error) {
     console.error('Error adding to watchlist:', error.message);
+    console.log('Backend response:', response);
     res.status(500).json({ message: 'Failed to add to watchlist' });
   }
 };
 
-// Get watchlist for a user
+// Get watchlist for the logged-in user
 const getWatchlist = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const userId = req.userId; // from middleware
 
     const watchlist = await Watchlist.find({ userId });
     res.status(200).json(watchlist);
@@ -38,7 +39,8 @@ const getWatchlist = async (req, res) => {
 // Remove a coin from watchlist
 const removeFromWatchlist = async (req, res) => {
   try {
-    const { userId, coinId } = req.body;
+    const userId = req.userId; // from middleware
+    const { coinId } = req.body;
 
     await Watchlist.findOneAndDelete({ userId, coinId });
 
