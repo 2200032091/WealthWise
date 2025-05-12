@@ -51,6 +51,13 @@ The application is split into the following components:
 - Watchlist (planned)
 - Token integration with main app (WIP)
 
+### 🔹 Stock Dashboard (Microservice)
+- Live crypto market prices via external API
+- Search any symbol
+
+For now, integrated both the services using iframes ,
+- doing a micro-frontend and micro-services architecture
+
 ---
 
 ## 🐞 Challenges Faced
