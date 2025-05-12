@@ -30,15 +30,16 @@
 #   "coinId": "bitcoin"
 # }
 
-GET http://localhost:5002/api/watchlist/user123
+# GET http://localhost:5002/api/watchlist/user123
 
-# POST http://localhost:5002/api/watchlist/add
-# Content-Type: application/json
+POST http://localhost:5002/api/watchlist/
+Content-Type: application/json
 
-# {
-#   "userId": "user123",
-#   "coinId": "bitcoin",
-#   "coinName": "Bitcoin",
-#   "coinSymbol": "BTC",
-#   "coinImage": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
-# }
+{
+  "userId": "user123",
+  "coinId": "bitcoin",
+  "coinName": "Bitcoin",
+  "coinSymbol": "BTC",
+  "coinImage": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+}
+

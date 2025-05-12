@@ -1,16 +1,11 @@
-// routes/watchlistRoutes.js
 const express = require('express');
 const { addToWatchlist, getWatchlist, removeFromWatchlist } = require('../controllers/watchlistController');
+const authenticate = require('../middleware/auth'); // you create this
 
 const router = express.Router();
 
-// Add a coin to watchlist
-router.post('/add', addToWatchlist);
-
-// Get user's watchlist
-router.get('/:userId', getWatchlist);
-
-// Remove a coin from watchlist
-router.delete('/remove', removeFromWatchlist);
+router.post('/watchlist', authenticate, addToWatchlist);
+router.get('/watchlist', authenticate, getWatchlist);
+router.delete('/watchlist', authenticate, removeFromWatchlist);
 
 module.exports = router;
