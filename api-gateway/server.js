@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 
-import cookieParser from 'cookie-parser';
+//import cookieParser from 'cookie-parser';
 import gatewayRoutes from './routes/gateway.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,10 +13,9 @@ console.log('[DEBUG] ENV:', process.env);
 const app = express();
 app.use(cors({
   origin: 'http://localhost:3000',
-  credentials: true
 }));
 
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api', gatewayRoutes);

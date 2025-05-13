@@ -29,11 +29,12 @@
 #   "userId": "user123",
 #   "coinId": "bitcoin"
 # }
+# GET http://localhost:5006/api/crypto/test
+# GET http://localhost:5006/api/crypto/prices
 
-# GET http://localhost:5002/api/watchlist/user123
-
-POST http://localhost:5002/api/watchlist/
+POST http://localhost:5002/api/watchlist
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzEzMDg2OCwiZXhwIjoxNzQ3MjE3MjY4fQ.Qw3OsODnjeLMCr-xtfxC2iWzWbDvxzZp0LB-EoSRaNA
 
 {
   "userId": "user123",
@@ -42,4 +43,3 @@ Content-Type: application/json
   "coinSymbol": "BTC",
   "coinImage": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
 }
-
