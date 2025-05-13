@@ -26,20 +26,51 @@ const getTarget = (key) => {
 const proxyOptions = (target) => ({
   target,
   changeOrigin: true,
-  pathRewrite: { '^/api/(crypto|stocks)': '' },
   onProxyReq: (proxyReq, req) => {
-    const token = req.cookies.token;
-    if (token) {
-      proxyReq.setHeader('Authorization', `Bearer ${token}`);
+    const authHeader = req.headers['authorization'];
+    if (authHeader) {
+      proxyReq.setHeader('Authorization', authHeader);
     }
-    if (req.user?.id) {
-      proxyReq.setHeader('x-user-id', req.user.id);
-    }
+    console.log(`[GATEWAY] FORWARD: ${req.method} → ${proxyReq.getHeader('host')}${req.url}`);
   }
 });
 
-// Use for routing and auth
-router.use('/crypto', authenticateToken, createProxyMiddleware(proxyOptions(getTarget('CRYPTO_SERVICE_URL'))));
-router.use('/stocks', authenticateToken, createProxyMiddleware(proxyOptions(getTarget('STOCK_SERVICE_URL'))));
+// ✅ Public - No token required
+router.use(
+  '/crypto/prices',
+  createProxyMiddleware(proxyOptions(getTarget('CRYPTO_SERVICE_URL')))
+);
+
+// 🔐 Protected route with path rewrite
+router.use(
+  '/api/crypto/watchlist',
+  authenticateToken,
+  createProxyMiddleware({
+    target: getTarget('CRYPTO_SERVICE_URL'),
+    changeOrigin: true,
+    pathRewrite: {
+      '^/api/crypto/watchlist': '/api/watchlist'
+    },
+    onProxyReq: (proxyReq, req) => {
+      const authHeader = req.headers['authorization'];
+      if (authHeader) {
+        proxyReq.setHeader('Authorization', authHeader);
+      }
+      console.log(`[GATEWAY] FORWARD: ${req.method} → ${proxyReq.getHeader('host')}${req.url}`);
+    }
+  })
+);
+
+// Test route
+router.use('/crypto/test', (req, res) => {
+  res.send("API Gateway is working!");
+});
+
+// 🔐 Stock service
+router.use(
+  '/stocks',
+  authenticateToken,
+  createProxyMiddleware(proxyOptions(getTarget('STOCK_SERVICE_URL')))
+);
 
 export default router;

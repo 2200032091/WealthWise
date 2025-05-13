@@ -4,7 +4,18 @@ const Watchlist = require('../models/Watchlist');
 const addToWatchlist = async (req, res) => {
   try {
     const { coinId, coinName, coinSymbol, coinImage } = req.body;
-    const userId = req.userId; // set by auth middleware
+    const userId = req.userId; // This comes from the middleware
+
+    // Ensure the userId is valid
+    if (!userId) {
+      return res.status(400).json({ message: 'User not authenticated' });
+    }
+
+    // Check if coin is already in the user's watchlist
+    const existingCoin = await Watchlist.findOne({ userId, coinId });
+    if (existingCoin) {
+      return res.status(400).json({ message: 'Coin is already in the watchlist' });
+    }
 
     const newEntry = new Watchlist({
       userId,
@@ -18,7 +29,6 @@ const addToWatchlist = async (req, res) => {
     res.status(201).json({ message: 'Coin added to watchlist' });
   } catch (error) {
     console.error('Error adding to watchlist:', error.message);
-    console.log('Backend response:', response);
     res.status(500).json({ message: 'Failed to add to watchlist' });
   }
 };
@@ -26,7 +36,12 @@ const addToWatchlist = async (req, res) => {
 // Get watchlist for the logged-in user
 const getWatchlist = async (req, res) => {
   try {
-    const userId = req.userId; // from middleware
+    const userId = req.userId; // From middleware
+
+    // Ensure the userId is valid
+    if (!userId) {
+      return res.status(400).json({ message: 'User not authenticated' });
+    }
 
     const watchlist = await Watchlist.find({ userId });
     res.status(200).json(watchlist);
@@ -39,10 +54,19 @@ const getWatchlist = async (req, res) => {
 // Remove a coin from watchlist
 const removeFromWatchlist = async (req, res) => {
   try {
-    const userId = req.userId; // from middleware
+    const userId = req.userId; // From middleware
     const { coinId } = req.body;
 
-    await Watchlist.findOneAndDelete({ userId, coinId });
+    // Ensure the userId is valid
+    if (!userId) {
+      return res.status(400).json({ message: 'User not authenticated' });
+    }
+
+    const removedCoin = await Watchlist.findOneAndDelete({ userId, coinId });
+
+    if (!removedCoin) {
+      return res.status(404).json({ message: 'Coin not found in watchlist' });
+    }
 
     res.status(200).json({ message: 'Coin removed from watchlist' });
   } catch (error) {
