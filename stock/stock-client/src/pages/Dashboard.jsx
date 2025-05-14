@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../api/axiosInstance';
 import StockCard from '../components/StockCard';
 import Header from '../components/Header';
 
@@ -8,13 +8,27 @@ const DEFAULT_SYMBOLS = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN'];
 const Dashboard = () => {
   const [stocks, setStocks] = useState([]);
   const [searchSymbol, setSearchSymbol] = useState('');
+  const [tokenReady, setTokenReady] = useState(false);
+
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.warn("Dashboard.jsx: Token not found in localStorage at fetch time");
+      }
+      if (token) {
+        setTokenReady(true); // trigger stock fetching when token is ready
+      } else {
+        console.warn('No token found. Skipping fetch.');
+      }
+    }, []);
 
   const fetchStock = async (symbol) => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_STOCK_API_BASE}?symbol=${symbol}`);
+      
+      const res = await axiosInstance.get(`/stocks?symbol=${symbol}`);
       return res.data;
     } catch (err) {
-      console.error('Error fetching stock:', symbol);
+      console.error('Error fetching stock:', symbol, err);
       return null;
     }
   };
@@ -24,6 +38,12 @@ const Dashboard = () => {
     setStocks(data.filter(Boolean));
   };
 
+  useEffect(() => {
+    if (tokenReady) {
+      fetchDefaultStocks();
+    }
+  }, [tokenReady]);
+
   const handleSearch = async () => {
     if (!searchSymbol) return;
     const data = await fetchStock(searchSymbol);
@@ -32,10 +52,6 @@ const Dashboard = () => {
       setSearchSymbol('');
     }
   };
-
-  useEffect(() => {
-    fetchDefaultStocks();
-  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100">
