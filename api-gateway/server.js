@@ -11,10 +11,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, '.env') });
 console.log('[DEBUG] ENV:', process.env);
 const app = express();
-app.use(cors({
-  origin: 'http://localhost:3000',
-}));
+const corsOptions = {
+  origin: ['http://localhost:3000', 'http://localhost:5173'], // Allow both origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
+app.use(cors(corsOptions));
 //app.use(cookieParser());
 app.use(express.json());
 

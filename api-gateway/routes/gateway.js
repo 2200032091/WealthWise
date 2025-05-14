@@ -88,7 +88,13 @@ router.use('/crypto/watchlist/test', (req, res) => {
 router.use(
   '/stocks',
   authenticateToken,
-  createProxyMiddleware(proxyOptions(getTarget('STOCK_SERVICE_URL')))
+  createProxyMiddleware({
+    ...proxyOptions(getTarget('STOCK_SERVICE_URL')),
+    pathRewrite: {
+      '^/stocks': '/api/stocks' // ✅ Rewrite to match stock service
+    }
+  })
+  
 );
 
 export default router;

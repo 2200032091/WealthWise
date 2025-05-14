@@ -34,15 +34,15 @@
 
 # GET http://localhost:5006/api/crypto/watchlist
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzE5Njg2MSwiZXhwIjoxNzQ3MjgzMjYxfQ.8_4SpMGJDl8lnyGFHrNXQBM7McnhzsRCs4WZHc8voZU
-# GET http://localhost:5002/api/watchlist 
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzE5Njg2MSwiZXhwIjoxNzQ3MjgzMjYxfQ.8_4SpMGJDl8lnyGFHrNXQBM7McnhzsRCs4WZHc8voZU
-POST http://localhost:5006/api/crypto/watchlist
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzIwMTgzNCwiZXhwIjoxNzQ3Mjg4MjM0fQ.c02j8btRovbApu2UekwLJag60QkQmf59GIwV7iVB1oQ
-Content-Type: application/json
+GET http://localhost:5006/api/stocks?symbol=AAPL
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzIyMzAxNywiZXhwIjoxNzQ3MzA5NDE3fQ.AI1G8xiS4biY5QQyrXZon2D9n2NJBsia2FsREc5rKqw
+# POST http://localhost:5006/api/crypto/watchlist
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzIwMTgzNCwiZXhwIjoxNzQ3Mjg4MjM0fQ.c02j8btRovbApu2UekwLJag60QkQmf59GIwV7iVB1oQ
+# Content-Type: application/json
 
-{
-  "coinId": "ethereum",
-  "coinName": "Ethereum",
-  "coinSymbol": "ETH",
-  "coinImage": "https://assets.coingecko.com/coins/images/279/large/ethereum.png"
-}
+# {
+#   "coinId": "ethereum",
+#   "coinName": "Ethereum",
+#   "coinSymbol": "ETH",
+#   "coinImage": "https://assets.coingecko.com/coins/images/279/large/ethereum.png"
+# }
