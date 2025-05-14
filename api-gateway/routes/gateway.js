@@ -35,38 +35,56 @@ const proxyOptions = (target) => ({
   }
 });
 
-// ✅ Public - No token required
+// ✅ Public route (no auth)
 router.use(
   '/crypto/prices',
   createProxyMiddleware(proxyOptions(getTarget('CRYPTO_SERVICE_URL')))
 );
 
-// 🔐 Protected route with path rewrite
+// 🔐 Protected watchlist route with path rewrite
 router.use(
-  '/api/crypto/watchlist',
+  '/crypto/watchlist',
   authenticateToken,
   createProxyMiddleware({
     target: getTarget('CRYPTO_SERVICE_URL'),
     changeOrigin: true,
-    pathRewrite: {
-      '^/api/crypto/watchlist': '/api/watchlist'
-    },
+    pathRewrite: (path, req) => {
+  const rewritten = req.originalUrl.replace(/^\/api\/crypto\/watchlist/, '/api/watchlist');
+  console.log('🔁 Original URL:', req.originalUrl);
+  console.log('🔁 Rewritten path:', rewritten);
+  return rewritten;
+},
+
     onProxyReq: (proxyReq, req) => {
       const authHeader = req.headers['authorization'];
       if (authHeader) {
         proxyReq.setHeader('Authorization', authHeader);
       }
-      console.log(`[GATEWAY] FORWARD: ${req.method} → ${proxyReq.getHeader('host')}${req.url}`);
+      if (
+    req.body &&
+    Object.keys(req.body).length &&
+    ['POST', 'PUT', 'PATCH'].includes(req.method)
+  ) {
+    const bodyData = JSON.stringify(req.body);
+    proxyReq.setHeader('Content-Type', 'application/json');
+    proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
+    proxyReq.write(bodyData);
+  }
     }
   })
 );
 
-// Test route
+
+// 🧪 Test routes
 router.use('/crypto/test', (req, res) => {
-  res.send("API Gateway is working!");
+  res.send('✅ API Gateway is working!');
 });
 
-// 🔐 Stock service
+router.use('/crypto/watchlist/test', (req, res) => {
+  res.send('✅ Gateway watchlist route works');
+});
+
+// 🔐 Stock service routing (protected)
 router.use(
   '/stocks',
   authenticateToken,

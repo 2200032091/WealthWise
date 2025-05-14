@@ -4,7 +4,7 @@ const Watchlist = require('../models/Watchlist');
 const addToWatchlist = async (req, res) => {
   try {
     const { coinId, coinName, coinSymbol, coinImage } = req.body;
-    const userId = req.userId; // This comes from the middleware
+    const userId = req.user.id; // This comes from the middleware
 
     // Ensure the userId is valid
     if (!userId) {
@@ -36,7 +36,7 @@ const addToWatchlist = async (req, res) => {
 // Get watchlist for the logged-in user
 const getWatchlist = async (req, res) => {
   try {
-    const userId = req.userId; // From middleware
+    const userId = req.user.id; // Access from the decoded token
 
     // Ensure the userId is valid
     if (!userId) {
