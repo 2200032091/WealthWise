@@ -11,16 +11,24 @@ const Dashboard = () => {
   const [tokenReady, setTokenReady] = useState(false);
 
     useEffect(() => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        console.warn("Dashboard.jsx: Token not found in localStorage at fetch time");
-      }
-      if (token) {
-        setTokenReady(true); // trigger stock fetching when token is ready
-      } else {
-        console.warn('No token found. Skipping fetch.');
-      }
-    }, []);
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+
+  if (token) {
+    localStorage.setItem('token', token);
+    console.log('✅ Token set from URL:', token);
+    setTokenReady(true); // ✅ trigger fetch
+  } else {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      console.log('✅ Token already in localStorage:', storedToken);
+      setTokenReady(true); // ✅ still allow fetch
+    } else {
+      console.warn('⚠️ No token found, cannot fetch');
+    }
+  }
+}, []);
+
 
   const fetchStock = async (symbol) => {
     try {
@@ -34,9 +42,13 @@ const Dashboard = () => {
   };
 
   const fetchDefaultStocks = async () => {
-    const data = await Promise.all(DEFAULT_SYMBOLS.map(fetchStock));
-    setStocks(data.filter(Boolean));
-  };
+  try {
+    const res = await axiosInstance.get('/stocks'); // no symbol → get all
+    setStocks(res.data);
+  } catch (err) {
+    console.error('Error fetching all stocks:', err);
+  }
+};
 
   useEffect(() => {
     if (tokenReady) {
