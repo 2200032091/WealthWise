@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import StockCard from '../components/StockCard';
 import Header from '../components/Header';
+import { getWatchlist, addToWatchlist, removeFromWatchlist } from '../api/watchlist';
 
 const DEFAULT_SYMBOLS = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN'];
 
@@ -9,6 +10,8 @@ const Dashboard = () => {
   const [stocks, setStocks] = useState([]);
   const [searchSymbol, setSearchSymbol] = useState('');
   const [tokenReady, setTokenReady] = useState(false);
+
+  const [watchlist, setWatchlist] = useState([]);
 
     useEffect(() => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -64,6 +67,26 @@ const Dashboard = () => {
       setSearchSymbol('');
     }
   };
+ 
+  // Handler to add stock to watchlist
+  const handleAddToWatchlist = async (symbol) => {
+    try {
+      await addToWatchlist(symbol);
+      setWatchlist((prev) => [...prev, symbol]);
+    } catch (err) {
+      console.error('Error adding to watchlist:', err);
+    }
+  };
+
+  // Handler to remove stock from watchlist
+  const handleRemoveFromWatchlist = async (symbol) => {
+    try {
+      await removeFromWatchlist(symbol);
+      setWatchlist((prev) => prev.filter(s => s !== symbol));
+    } catch (err) {
+      console.error('Error removing from watchlist:', err);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -74,7 +97,13 @@ const Dashboard = () => {
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
         {stocks.map((stock) => (
-          <StockCard key={stock.symbol} data={stock} />
+          <StockCard 
+            key={stock.symbol} 
+            data={stock} 
+            isInWatchlist={watchlist.includes(stock.symbol)}
+            onAdd={() => handleAddToWatchlist(stock.symbol)}
+            onRemove={() => handleRemoveFromWatchlist(stock.symbol)}
+          />
         ))}
       </div>
     </div>
