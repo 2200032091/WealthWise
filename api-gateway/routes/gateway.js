@@ -97,4 +97,37 @@ router.use(
   
 );
 
+// Stock watchlist routes
+router.use(
+  '/stocks/watchlist',
+  authenticateToken,
+  createProxyMiddleware({
+    target: getTarget('STOCK_SERVICE_URL'),
+    changeOrigin: true,
+    pathRewrite: (path, req) => {
+      const rewritten = req.originalUrl.replace(/^\/api\/stocks\/watchlist/, '/api/watchlist');
+      console.log('🔁 Original URL:', req.originalUrl);
+      console.log('🔁 Rewritten path:', rewritten);
+      return rewritten;
+    },
+    onProxyReq: (proxyReq, req) => {
+      const authHeader = req.headers['authorization'];
+      if (authHeader) {
+        proxyReq.setHeader('Authorization', authHeader);
+      }
+      if (
+        req.body &&
+        Object.keys(req.body).length &&
+        ['POST', 'PUT', 'PATCH'].includes(req.method)
+      ) {
+        const bodyData = JSON.stringify(req.body);
+        proxyReq.setHeader('Content-Type', 'application/json');
+        proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
+        proxyReq.write(bodyData);
+      }
+    }
+  })
+);
+
+
 export default router;
