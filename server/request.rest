@@ -34,13 +34,9 @@
 
 # GET http://localhost:5006/api/crypto/watchlist
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzE5Njg2MSwiZXhwIjoxNzQ3MjgzMjYxfQ.8_4SpMGJDl8lnyGFHrNXQBM7McnhzsRCs4WZHc8voZU
-POST http://localhost:5006/api/stocks/watchlist
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzI5MzI1MiwiZXhwIjoxNzQ3Mzc5NjUyfQ.T2wFOKN7Gr4zXdIVK8kxQsHm5kzG222rCfuJahF9eSA
-Content-Type: application/json
+GET http://localhost:5006/api/stocks/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzQ2NzY2MiwiZXhwIjoxNzQ3NTU0MDYyfQ.8FkqP69Gc8Woa59nAaqLgW23bih7BZ-pHIDFWrJ_o1c
 
-{
-  "symbol": "AAPL"
-}
 
 # POST http://localhost:5006/api/crypto/watchlist
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzIwMTgzNCwiZXhwIjoxNzQ3Mjg4MjM0fQ.c02j8btRovbApu2UekwLJag60QkQmf59GIwV7iVB1oQ
