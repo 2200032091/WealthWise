@@ -10,6 +10,8 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const router = express.Router();
 
+router.use(express.json());
+
 console.log('Loaded ENV:', {
   CRYPTO_SERVICE_URL: process.env.CRYPTO_SERVICE_URL,
   STOCK_SERVICE_URL: process.env.STOCK_SERVICE_URL
@@ -85,17 +87,6 @@ router.use('/crypto/watchlist/test', (req, res) => {
 });
 
 // 🔐 Stock service routing (protected)
-router.use(
-  '/stocks',
-  authenticateToken,
-  createProxyMiddleware({
-    ...proxyOptions(getTarget('STOCK_SERVICE_URL')),
-    pathRewrite: {
-      '^/stocks': '/api/stocks' // ✅ Rewrite to match stock service
-    }
-  })
-  
-);
 
 // Stock watchlist routes
 router.use(
@@ -105,8 +96,7 @@ router.use(
     target: getTarget('STOCK_SERVICE_URL'),
     changeOrigin: true,
     pathRewrite: (path, req) => {
-      const rewritten = req.originalUrl.replace(/^\/api\/stocks\/watchlist/, '/api/watchlist');
-      console.log('🔁 Original URL:', req.originalUrl);
+      const rewritten = req.url.replace(/^\/api\/stocks\/watchlist/, '/api/stocks/watchlist');
       console.log('🔁 Rewritten path:', rewritten);
       return rewritten;
     },
@@ -120,6 +110,7 @@ router.use(
         Object.keys(req.body).length &&
         ['POST', 'PUT', 'PATCH'].includes(req.method)
       ) {
+        console.log('Request Body:', req.body);
         const bodyData = JSON.stringify(req.body);
         proxyReq.setHeader('Content-Type', 'application/json');
         proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
@@ -127,6 +118,18 @@ router.use(
       }
     }
   })
+);
+
+router.use(
+  '/stocks',
+  authenticateToken,
+  createProxyMiddleware({
+    ...proxyOptions(getTarget('STOCK_SERVICE_URL')),
+    pathRewrite: {
+      '^/stocks': '/api/stocks' // ✅ Rewrite to match stock service
+    }
+  })
+  
 );
 
 
