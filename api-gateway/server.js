@@ -12,7 +12,7 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 console.log('[DEBUG] ENV:', process.env);
 const app = express();
 const corsOptions = {
-  origin: ['http://localhost:3000', 'http://localhost:5173'], // Allow both origins
+  origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:3001'], // Allow both origins
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
