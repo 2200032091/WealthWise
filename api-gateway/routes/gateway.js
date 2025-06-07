@@ -37,13 +37,13 @@ const proxyOptions = (target) => ({
   }
 });
 
-// ✅ Public route (no auth)
+// Public route (no auth)
 router.use(
   '/crypto/prices',
   createProxyMiddleware(proxyOptions(getTarget('CRYPTO_SERVICE_URL')))
 );
 
-// 🔐 Protected watchlist route with path rewrite
+// Protected watchlist route with path rewrite
 router.use(
   '/crypto/watchlist',
   authenticateToken,
@@ -77,7 +77,7 @@ router.use(
 );
 
 
-// 🧪 Test routes
+// Test routes
 router.use('/crypto/test', (req, res) => {
   res.send('✅ API Gateway is working!');
 });
@@ -86,7 +86,7 @@ router.use('/crypto/watchlist/test', (req, res) => {
   res.send('✅ Gateway watchlist route works');
 });
 
-// 🔐 Stock service routing (protected)
+// Stock service routing (protected)
 
 // Stock watchlist routes
 router.use(
@@ -126,7 +126,7 @@ router.use(
   createProxyMiddleware({
     ...proxyOptions(getTarget('STOCK_SERVICE_URL')),
     pathRewrite: {
-      '^/stocks': '/api/stocks' // ✅ Rewrite to match stock service
+      '^/stocks': '/api/stocks' //  Rewrite to match stock service
     }
   })
   
