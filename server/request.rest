@@ -34,17 +34,21 @@
 
 # GET http://localhost:5006/api/crypto/watchlist
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzE5Njg2MSwiZXhwIjoxNzQ3MjgzMjYxfQ.8_4SpMGJDl8lnyGFHrNXQBM7McnhzsRCs4WZHc8voZU
-GET http://localhost:5006/api/stocks/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzQ2NzY2MiwiZXhwIjoxNzQ3NTU0MDYyfQ.8FkqP69Gc8Woa59nAaqLgW23bih7BZ-pHIDFWrJ_o1c
+# GET http://localhost:5006/api/stocks/
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzQ2NzY2MiwiZXhwIjoxNzQ3NTU0MDYyfQ.8FkqP69Gc8Woa59nAaqLgW23bih7BZ-pHIDFWrJ_o1c
 
 
-# POST http://localhost:5006/api/crypto/watchlist
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjFlOGFiNzRkYTg1OWU4YzQ4ODA1ZSIsImlhdCI6MTc0NzIwMTgzNCwiZXhwIjoxNzQ3Mjg4MjM0fQ.c02j8btRovbApu2UekwLJag60QkQmf59GIwV7iVB1oQ
+# POST http://localhost:5000/api/investments
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGExNWI3NjJiZjViZTU4ZTYwN2VlZCIsImlhdCI6MTc0OTM5MjM0NiwiZXhwIjoxNzQ5NDc4NzQ2fQ.T7p4UEgUjAJGQLB4IX0WHWT6WySw45HrErHPYP8BvVk
 # Content-Type: application/json
 
 # {
-#   "coinId": "ethereum",
-#   "coinName": "Ethereum",
-#   "coinSymbol": "ETH",
-#   "coinImage": "https://assets.coingecko.com/coins/images/279/large/ethereum.png"
+#   "type": "crypto",
+#   "symbol": "BTC",
+#   "quantity": 0.5,
+#   "buyPrice": 27000,
+#   "buyDate": "2024-10-01"
 # }
+
+GET http://localhost:5000/api/investments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGExNWI3NjJiZjViZTU4ZTYwN2VlZCIsImlhdCI6MTc0OTM5MzA3OCwiZXhwIjoxNzQ5NDc5NDc4fQ.2UuQS8rMwsymO6YAfKTWriZxRmDYXb587Xy_Bl84B2M

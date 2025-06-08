@@ -14,7 +14,7 @@ app.use('/api/test', require('./routes/test'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/transactions', require('./routes/transaction'));
 app.use('/api/users', require('./routes/users'));
-
+app.use('/api/investments',require('./routes/investmentRoutes'));
 // MongoDB connection
 const PORT = process.env.PORT || 5000;
 mongoose
