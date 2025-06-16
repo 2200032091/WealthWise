@@ -50,5 +50,8 @@
 #   "buyDate": "2024-10-01"
 # }
 
-GET http://localhost:5000/api/investments
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGExNWI3NjJiZjViZTU4ZTYwN2VlZCIsImlhdCI6MTc0OTM5MzA3OCwiZXhwIjoxNzQ5NDc5NDc4fQ.2UuQS8rMwsymO6YAfKTWriZxRmDYXb587Xy_Bl84B2M
+# GET http://localhost:5000/api/investments
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGExNWI3NjJiZjViZTU4ZTYwN2VlZCIsImlhdCI6MTc0OTM5MzA3OCwiZXhwIjoxNzQ5NDc5NDc4fQ.2UuQS8rMwsymO6YAfKTWriZxRmDYXb587Xy_Bl84B2M
+
+GET http://localhost:5006/api/stocks/price/AAPL
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGExNWI3NjJiZjViZTU4ZTYwN2VlZCIsImlhdCI6MTc0OTQ4MDkxNywiZXhwIjoxNzQ5NTY3MzE3fQ.hS3ZuoUr2GEk7r_iedGOHb3OgKd1nZw5ql-9CRJsLjM
