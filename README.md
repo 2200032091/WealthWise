@@ -6,7 +6,7 @@ WealthWise is a full-stack finance dashboard application built to help users tra
 
 ---
 
-## 🏗️ Project Structure
+##  Project Structure
 
 The application is split into the following components:
 
@@ -39,20 +39,20 @@ The application is split into the following components:
 
 ## ✅ Features Completed So Far
 
-### 🔹 Main Dashboard
+### Main Dashboard
 - User registration & login  
 - JWT-based authentication  
 - Transactions list (CRUD)  
 - Wallet tracking  
 - Stats, charts & expense analytics  
 
-### 🔹 Crypto Dashboard (Microservice)
+### Crypto Dashboard (Microservice)
 - Live crypto market prices via external API  
 - Individual coin page  
 - Watchlist  
 - Token integration with main app  
 
-### 🔹 Stock Dashboard (Microservice)
+### Stock Dashboard (Microservice)
 - Live stock market prices via external API  
 - Search any symbol  
 - Watchlist  
@@ -95,7 +95,7 @@ The application is split into the following components:
   - Enable auto-refresh or real-time market price updates  
   - Add search and filtering for assets
 
--  **Authentication & Security**  
+- **Authentication & Security**  
   - 🍪 Switch to HTTP-only cookies for enhanced production security  
   - 🔁 Add refresh token support  
   - ⛔ Handle token expiry and auto-refresh on frontend
@@ -133,7 +133,7 @@ The application is split into the following components:
 
 ---
 
-## 📦 License
+##  License
 
 This project is **not open source**.  
 All rights reserved to the author.  
