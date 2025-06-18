@@ -92,5 +92,5 @@ All rights reserved to the author.
 ## 🙌 Author
 
 Built by Harika
-Fueled by late-night debugging, coffee ☕, and relentless curiosity.
+Fueled by late-night debugging, coffee ☕, and relentless curiosity..
 
