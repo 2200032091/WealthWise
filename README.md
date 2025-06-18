@@ -8,22 +8,7 @@ WealthWise is a full-stack finance dashboard application built to help users tra
 
 ##  Project Structure
 
-The application is split into the following components:
-
-1. **Main App (Monolith)**
-   - Built with React (Frontend)
-   - Handles routing, authentication, and main dashboard UI
-   - Manages transactions, wallets, user profiles
-
-2. **crypto-service (Microservice)**
-   - Built as a separate backend service
-   - Fetches live crypto prices
-   - Allows users to track/watch specific cryptocurrencies
-
-3. **stock-service (Microservice)**
-   - Fetches and displays stock data (basic dashboard first)
-   - Supports watchlists
-   - Eventually supports price tracking
+![system-architect](https://github.com/2200032091/WealthWise/blob/main/assets/architecture.png)
 
 ---
 
