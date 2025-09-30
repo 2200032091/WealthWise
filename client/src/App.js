@@ -16,6 +16,7 @@ import StockDashboard from './pages/stock/Dashboard';
 import Watchlist from './pages/stock/WatchList';
 import Markets from './pages/Markets';
 import InvestmentGrowth from './pages/InvestmentGrowth';
+import Projection from './pages/Projection';
 function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -39,6 +40,7 @@ function App() {
          <Route path="/stocks/watchlist" element={<Watchlist />} />
         <Route path="/market" element={<Markets/>} />
         <Route path="/investments" element={<InvestmentGrowth/>} />
+        <Route path="/projection" element={<Projection/>}/>
       </Routes>
     </Router>
   );
