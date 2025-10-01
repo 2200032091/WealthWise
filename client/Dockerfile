@@ -5,6 +5,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+
+# Increase memory limit for large builds
+ENV NODE_OPTIONS=--max-old-space-size=4096
 RUN npm run build
 
 # Use lightweight nginx to serve production build
@@ -12,5 +15,5 @@ FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Expose port 3000
-EXPOSE 3000
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
