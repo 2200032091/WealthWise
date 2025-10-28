@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5006/api/crypto',
+  baseURL: 'http://ec2-34-229-215-209.compute-1.amazonaws.com:5006/api/crypto',
   headers: {
     'Content-Type': 'application/json',
   },
