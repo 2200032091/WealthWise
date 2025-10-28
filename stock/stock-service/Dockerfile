@@ -17,4 +17,4 @@ ENV NODE_OPTIONS=--max-old-space-size=4096
 EXPOSE 5003
 
 # 6. Run the service
-CMD ["node", "index.js"]
+CMD ["node", "app.js"]
