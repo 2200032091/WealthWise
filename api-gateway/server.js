@@ -21,6 +21,10 @@ app.use(cors(corsOptions));
 //app.use(cookieParser());
 app.use(express.json());
 
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', message: 'api-gateway is live and running' });
+});
+
 app.use('/api', gatewayRoutes);
 
 const PORT = process.env.PORT || 5006;

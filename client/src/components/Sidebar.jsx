@@ -22,7 +22,7 @@ const Sidebar = () => {
         <Link to="/add" className="flex items-center gap-3 hover:text-sky-400 transition-colors duration-200 mt-6">
           <FaPlusCircle /> Add Transaction
         </Link>
-        {/* <Link to="/crypto" className="flex items-center gap-3 hover:text-sky-400 transition-colors duration-200">
+        <Link to="/crypto" className="flex items-center gap-3 hover:text-sky-400 transition-colors duration-200">
           <FaChartLine /> Crypto Dashboard
         </Link>
         <Link to="/stocks" className="flex items-center gap-3 hover:text-sky-400 transition-colors duration-200">
@@ -36,7 +36,7 @@ const Sidebar = () => {
         </Link>
         <Link to="/projection" className="flex items-center gap-3 hover:text-sky-400 transition-colors duration-200">
           <FaChartLine /> Compound Growth Projection
-        </Link> */}
+        </Link>
         
 
       </nav>
