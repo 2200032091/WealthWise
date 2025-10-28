@@ -12,7 +12,7 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 console.log('[DEBUG] ENV:', process.env);
 const app = express();
 const corsOptions = {
-  origin: ['http://ec2-34-229-215-209.compute-1.amazonaws.com:3000'], // Allow both origins
+  origin: ['https://wealthwise.gh-18.com'], // Allow  origins
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
