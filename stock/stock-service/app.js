@@ -15,7 +15,11 @@ app.use(express.json());
 app.use('/api/stocks', stockRoutes);
 app.use('/api/stocks/watchlist', watchlistRoutes);
 
-const PORT = process.env.PORT || 3002;
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', message: 'Stock service is running 🚀' });
+});
+
+const PORT = process.env.PORT || 5003;
 app.listen(PORT, () => {
   console.log(`Stock service running on port ${PORT}`);
 });
