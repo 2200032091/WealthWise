@@ -64,6 +64,6 @@ Started as a monolithic app and evolved into a distributed microservices-based s
 This project is **not open source**.  
 > Built for learning, showcasing skills, and pure curiosity.
 
-By: Harika✨
+By Harika✨
 
 ---
