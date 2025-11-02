@@ -1,8 +1,7 @@
 # WealthWise – Personal Finance & Investment Tracker
 
-WealthWise is a full-stack finance dashboard built to help users track expenses, monitor crypto and stock investments, and get smarter about money.
+WealthWise is a full-stack finance dashboard built to help users manage expenses, monitor crypto and stock investments, and analyze their financial growth — powered by a microservices architecture.
 
-> Started as a passion project to explore breaking down a monolith into microservices, handle secure authentication, and play with real-time financial data.
 
 ---
 
@@ -10,53 +9,61 @@ WealthWise is a full-stack finance dashboard built to help users track expenses,
 
 ![system-architect](https://github.com/2200032091/WealthWise/blob/main/assets/architecture.png)
 
+
+
+Started as a monolithic app and evolved into a distributed microservices-based system, deployed on AWS EC2 with Nginx reverse proxy, SSL (Certbot), and domain via Cloudflare.
+
+## Architecture Highlights
+
+- API Gateway routes traffic securely to all backend microservices.
+- **Independent microservices for:**
+- Crypto Service → Live crypto prices, personal watchlist.
+- Stock Service → Real-time stock data, personal watchlist.
+- Main Server → Authentication, transactions, and analytics.
+- Frontend deployed and served over HTTPS via Nginx proxy.
+
 ---
 
 ## Tech Stack
 
 - **Frontend:** React.js, Tailwind CSS, Chart.js  
 - **Backend:** Node.js, Express, MongoDB Atlas  
-- **Auth:** JWT (moving to secure cookies)  
+- **Auth:** JWT-based secure token authentication
+- **Infra:** Docker, Nginx, AWS EC2, Cloudflare DNS, Certbot SSL
 - **APIs:** Real-time data from financial APIs  
-- **Arch:** Microservices (work in progress)
+- **Arch:** Microservices + API Gateway
+- **Version Control:** GitHub
+- **Upcoming:** Redis caching, GitHub Actions automation
 
 ---
 
-## What’s Built So Far
+## Key Features
 
-### Main Dashboard
-- User auth (register/login with JWT)
-- Expense tracking (CRUD transactions)
-- Wallet view with balances
-- Charts + basic analytics
-- Combined "Markets" tab for Crypto & Stocks
+- Secure JWT authentication and authorization
+- Expense tracker with dynamic charts 
+- Wallet dashboard with balances and category insights
+- Crypto & Stock dashboards with live data
+- Personalized watchlists synced to user accounts
+- End-to-end HTTPS deployment using Nginx + Certbot
+- Modular service design enabling scalable deployment
 
-### Crypto Service
-- Live prices from external APIs
-- Coin pages + search
-- Personal watchlist
-- Integrated with main app
+---
 
-### Stock Service
-- Real-time stock data + search
-- Watchlist functionality
-- Integrated with main app
-- Coin pages + search
+## What I Learned
+
+- Setting up and deploying a real microservices architecture
+- Managing reverse proxy and SSL for multiple subdomains
+- Optimizing Docker workflows for production
+- Configuring Cloudflare + Nginx for security and routing
+- Structuring large-scale full-stack apps for modularity
 
 ---
 
 ## License
 
 This project is **not open source**.  
-All rights reserved to the author.
-
 > Built for learning, showcasing skills, and pure curiosity.
 
----
-
-## About Me
-
-Made with love by **Harika** —  
-Fueled by coffee , late-night debugging, and an interest in building real things with code.
+By: Harika✨
 
 ---
